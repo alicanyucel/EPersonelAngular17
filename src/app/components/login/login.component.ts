@@ -19,7 +19,7 @@ export class LoginComponent {
   @ViewChild("password") passwordEl: ElementRef<HTMLInputElement> | undefined 
 
   data=signal<LoginModel>(new LoginModel());
-  isShowPassword: boolean = false; 
+  isShowPassword=signal(false); 
 
   constructor(
     public http: HttpService, 
@@ -43,9 +43,9 @@ export class LoginComponent {
   }
 
   changeShowPassword(){
-    this.isShowPassword = !this.isShowPassword;
+    this.isShowPassword.set(!this.isShowPassword);
 
-    if(this.isShowPassword){
+    if(this.isShowPassword()){
       this.passwordEl!.nativeElement.type = "text";
     }else{
       this.passwordEl!.nativeElement.type = "password";

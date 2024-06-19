@@ -27,7 +27,7 @@
                       <input type="password" [(ngModel)]="data().password" name="password" class="form-control" #password
                         placeholder="********" required>
                       <span class="input-group-text">
-                        @if(isShowPassword){
+                        @if(isShowPassword()){
                         <i (click)="changeShowPassword()" class="fa-solid fa-eye-slash cursor"></i>
                         }@else{
                         <i (click)="changeShowPassword()" class="fa-solid fa-eye cursor"></i>
