@@ -1,0 +1,92 @@
+<body class="d-flex flex-column">
+    <div class="page page-center">
+        <div class="container container-normal py-4">
+            <div class="row align-items-center g-4">
+                <div class="col-lg">
+                    <div class="container-tight">
+                        <div class="text-center mb-4">
+                            <a href="." class="navbar-brand navbar-brand-autodark">
+                                <h1>e-Personel App</h1>
+                            </a>
+                        </div>
+                        <div class="card card-md">
+                            <div class="card-body">
+                                <h2 class="h2 text-center mb-4">Kayıt Sayfası</h2>
+                                <form #registerForm="ngForm" autocomplete="off" (ngSubmit)="signUp(registerForm)">
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Adı</label>
+                                        <input id="firstName" type="text" [(ngModel)]="data.firstName" name="firstName"
+                                            class="form-control" placeholder="jhon" required minlength="3" validate>
+                                        <div class="invalid-feedback">
+                                            Ad alanı en az 3 karakter olmalıdır
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Soyadı</label>
+                                        <input id="LastName" type="text" [(ngModel)]="data.lastName" name="LastName"
+                                            class="form-control" placeholder="jhon" required minlength="3" validate>
+                                        <div class="invalid-feedback">
+                                            Soyadı alanı en az 3 karakter olmalıdır
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Avatar</label>
+                                        <input id="file" (change)="setFile($event)" type="file" name="file" class="form-control">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Kullanıcı Adı</label>
+                                        <input id="userName" type="text" [(ngModel)]="data.userName" name="userName"
+                                            class="form-control" placeholder="jhondoe" required minlength="3" validate>
+                                        <div class="invalid-feedback">
+                                            Kullanıcı adı en az 3 karakter olmalıdır
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Şifre</label>
+                                        <div class="input-group input-group-flat">
+                                            <input type="password" [(ngModel)]="data.password" name="password"
+                                                class="form-control" #password placeholder="********" required>
+                                            <span class="input-group-text">
+                                                @if(isShowPassword){
+                                                <i (click)="changeShowPassword()"
+                                                    class="fa-solid fa-eye-slash cursor"></i>
+                                                }@else{
+                                                <i (click)="changeShowPassword()" class="fa-solid fa-eye cursor"></i>
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-footer">
+                                        @if(!http.isLoading){
+                                        <button type="submit" class="btn btn-primary w-100"
+                                            [disabled]="!registerForm.valid">
+                                            Kayıt Ol
+                                        </button>
+                                        }@else {
+                                        <button class="btn btn-primary w-100" type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm me-1" role="status"
+                                                aria-hidden="true"></span>
+                                            Kayıt oluşturuluyor...
+                                        </button>
+                                        }
+                                    </div>
+                                </form>
+                            </div>                           
+                        </div>
+                        <div class="text-center text-muted mt-3">
+                            Zaten hesabınız var mı? <a routerLink="/login" tabindex="-1">Giriş yap</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg d-none d-lg-block">
+                    <img src="/assets/static/illustrations/undraw_secure_login_pdn4.svg" height="300"
+                        class="d-block mx-auto" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
