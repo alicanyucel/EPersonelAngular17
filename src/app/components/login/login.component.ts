@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Signal, ViewChild, signal } from '@angular/core';
 import { LoginModel } from '../../models/login.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ValidateDirective } from '../../directives/validate.directive';
@@ -18,7 +18,7 @@ import { GoogleSigninButtonModule, SocialAuthService } from '@abacritt/angularx-
 export class LoginComponent {
   @ViewChild("password") passwordEl: ElementRef<HTMLInputElement> | undefined 
 
-  data: LoginModel = new LoginModel();
+  data=signal<LoginModel>(new LoginModel());
   isShowPassword: boolean = false; 
 
   constructor(

@@ -15,7 +15,7 @@
                 <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="signIn(loginForm)">
                   <div class="mb-3">
                     <label class="form-label">Kullanıcı Adı</label>
-                    <input id="userName" type="text" [(ngModel)]="data.userName" name="userName" class="form-control"
+                    <input id="userName" type="text" [(ngModel)]="data().userName" name="userName" class="form-control"
                       placeholder="jhondoe" required minlength="3" validate>
                     <div class="invalid-feedback">
                       Kullanıcı adı en az 3 karakter olmalıdır
@@ -24,7 +24,7 @@
                   <div class="mb-2">
                     <label class="form-label">Şifre</label>
                     <div class="input-group input-group-flat">
-                      <input type="password" [(ngModel)]="data.password" name="password" class="form-control" #password
+                      <input type="password" [(ngModel)]="data().password" name="password" class="form-control" #password
                         placeholder="********" required>
                       <span class="input-group-text">
                         @if(isShowPassword){
@@ -37,7 +37,7 @@
                   </div>
                   <div class="mb-2">
                     <label class="form-check">
-                      <input type="checkbox" [(ngModel)]="data.rememberMe" name="rememberMe" class="form-check-input" />
+                      <input type="checkbox" [(ngModel)]="data().rememberMe" name="rememberMe" class="form-check-input" />
                       <span class="form-check-label">Beni hatırla</span>
                     </label>
                   </div>
