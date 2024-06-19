@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { SwalService } from './swal.service';
 import { LoginResponseModel } from '../models/login-response.model';
 
@@ -7,7 +7,7 @@ import { LoginResponseModel } from '../models/login-response.model';
   providedIn: 'root'
 })
 export class HttpService {
-  isLoading: boolean = false;
+  isLoading=signal(false);
 
   constructor(
     private http: HttpClient,
@@ -24,7 +24,7 @@ export class HttpService {
   }
 
   get<T>(api: string, callBack: (res:T) => void) {
-    this.isLoading = true;
+    this.isLoading.set(true);
     const secretKey = this.getSecretKey();
 
     this.http.get<T>(`https://localhost:7052/api/${api}`,{
@@ -34,10 +34,10 @@ export class HttpService {
     }).subscribe({
       next: (res) => {
         callBack(res);
-        this.isLoading = false;
+        this.isLoading.set(false);
       },
       error: (err: HttpErrorResponse) => {
-        this.isLoading = false;
+        this.isLoading.set(false);
         console.log(err);
         if (err.status === 400) {
           this.swal.callToast(err.error.message, "error");
@@ -53,14 +53,14 @@ export class HttpService {
   }
 
   post<T>(api: string, body: any, callBack: (res:T) => void) {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.http.post<T>(`https://localhost:7052/api/${api}`, body).subscribe({
       next: (res) => {
         callBack(res);
-        this.isLoading = false;
+        this.isLoading.set( false);
       },
       error: (err: HttpErrorResponse) => {
-        this.isLoading = false;
+        this.isLoading.set(false)
         console.log(err);
         if (err.status === 400) {
           this.swal.callToast(err.error.message, "error");

@@ -34,7 +34,7 @@ export class LoginComponent {
 
   signIn(form: NgForm){
     if(form.valid){
-      this.http.post("Auth/Login", this.data,(res)=> {
+      this.http.post("Auth/Login", this.data(),(res)=> {
         localStorage.setItem("response", JSON.stringify(res))
         this.router.navigateByUrl("/");
         this.swal.callToast("Login is successful");
