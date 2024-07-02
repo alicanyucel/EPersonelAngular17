@@ -1,0 +1,64 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            @for(column of columns; track column){
+            <th>
+                {{ column.title }}
+            </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for(item of value.data; track item){
+        <tr>
+            @for(column of columns; track column){
+            <td>
+                {{ item[column.field] }}
+            </td>
+            }
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td [colSpan]="columns!.length - 1">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">&#8249;</span>
+                            </a>
+                        </li>
+                        @for(pageNumber of pageNumbers; track pageNumber){
+                        <li class="page-item" [ngClass]="state.pageNumber === pageNumber ? 'active': ''">
+                            <a (click)="changePage(pageNumber)" class="page-link">
+                                {{pageNumber}}
+                            </a>
+                        </li>
+                        }
+                        <li class="page-item"><a class="page-link">...</a></li>
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Next">
+                                <span aria-hidden="true">&#8250;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </td>
+            <td style="width: 100%; display: flex; align-items: center; justify-content: end; height: 80px;">
+                <span>{{value.total}}</span>
+            </td>
+        </tr>
+
+    </tfoot>
+</table>

@@ -6,14 +6,17 @@ import { provideHttpClient } from '@angular/common/http';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 
+import { provideAnimations } from '@angular/platform-browser/animations'
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
     provideRouter(routes), 
     provideHttpClient(), 
+    provideAnimations(),
     importProvidersFrom(
       SweetAlert2Module,
-      SocialLoginModule
+      SocialLoginModule,
     ),
     {
       provide: 'SocialAuthServiceConfig',

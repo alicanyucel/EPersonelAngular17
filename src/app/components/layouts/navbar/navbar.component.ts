@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  fullName: string = "";
-  avatarUrl: string = "";
+  fullName = signal("");
+  avatarUrl = signal("");
 
   constructor(private router: Router){
     if(localStorage.getItem("response")){
       const response = JSON.parse(localStorage.getItem("response")!);
-      this.fullName = response.fullName;
-      this.avatarUrl = response.avatarUrl;
+      this.fullName.set(response.fullName);
+      this.avatarUrl.set(response.avatarUrl);
     }
   }
 

@@ -7,7 +7,7 @@ import { LoginResponseModel } from '../models/login-response.model';
   providedIn: 'root'
 })
 export class HttpService {
-  isLoading=signal(false);
+  isLoading = signal(false);
 
   constructor(
     private http: HttpClient,
@@ -57,10 +57,10 @@ export class HttpService {
     this.http.post<T>(`https://localhost:7052/api/${api}`, body).subscribe({
       next: (res) => {
         callBack(res);
-        this.isLoading.set( false);
+        this.isLoading.set(false);
       },
       error: (err: HttpErrorResponse) => {
-        this.isLoading.set(false)
+        this.isLoading.set(false);
         console.log(err);
         if (err.status === 400) {
           this.swal.callToast(err.error.message, "error");
